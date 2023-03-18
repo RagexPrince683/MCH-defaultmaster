@@ -1,5 +1,5 @@
 # MCH-defaultmaster
-default mcheli SRC, idc sue me
+default mcheli 1.0.3 SRC for 1.7.10 forge, idc sue me
 
 Mcheli SRC, personally I set it up using intellij.
 
@@ -16,5 +16,4 @@ open gradle console you should see gradle and then a bunch of things, then you w
 build
 
 then if all goes well go to build/libs and a java file will be there. If you have made edits to the src you want to open the jar file with a archiver tool such as winrar. You can put this compiled class code into mcheli/mcheli of a actual mcheli instance and test things out yourself.
-
 
