@@ -305,7 +305,7 @@ public class MCP_EntityPlane extends MCH_EntityAircraft {
                rot = this.getAcInfo().mobilityYawOnGround;
                if(!this.getAcInfo().canRotOnGround) {
                   Block block = MCH_Lib.getBlockY(this, 3, -2, false);
-                  if(!W_Block.isEqual(block, W_Block.getWater()) && !W_Block.isEqual(block, Blocks.air)) {
+                  if(!W_Block.isEqual(block, W_Block.getWater()) && !W_Block.isEqual(block, Blocks.air) && !W_Block.isEqual(block, Blocks.flowing_water)) {
                      rot = 0.0F;
                   }
                }
@@ -748,7 +748,7 @@ public class MCP_EntityPlane extends MCH_EntityAircraft {
       boolean canMove = true;
       if(!this.getAcInfo().canMoveOnGround) {
          Block motion = MCH_Lib.getBlockY(this, 3, -2, false);
-         if(!W_Block.isEqual(motion, W_Block.getWater()) && !W_Block.isEqual(motion, Blocks.air)) {
+         if(!W_Block.isEqual(motion, W_Block.getWater()) && !W_Block.isEqual(motion, Blocks.air) && !W_Block.isEqual(motion, Blocks.flowing_water)) {
             canMove = false;
          }
       }

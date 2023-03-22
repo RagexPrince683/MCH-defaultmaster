@@ -338,7 +338,7 @@ public class MCH_EntityTank extends MCH_EntityAircraft {
 
       super.worldObj.theProfiler.endSection();
    }
-
+//help
    private void rotationByKey(float partialTicks) {
       float rot = 0.2F;
       if(super.moveLeft && !super.moveRight) {
@@ -381,6 +381,7 @@ public class MCH_EntityTank extends MCH_EntityAircraft {
             double dx = super.posX - super.prevPosX;
             double dz = super.posZ - super.prevPosZ;
             double dist = dx * dx + dz * dz;
+
             if(pivotTurnThrottle1 <= 0.0F || this.getCurrentThrottle() >= (double)pivotTurnThrottle1 || super.throttleBack >= pivotTurnThrottle1 / 10.0F || dist > (double)super.throttleBack * 0.01D) {
                float sf = (float)Math.sqrt(dist <= 1.0D?dist:1.0D);
                if(pivotTurnThrottle1 <= 0.0F) {
@@ -395,6 +396,7 @@ public class MCH_EntityTank extends MCH_EntityAircraft {
                if(super.moveRight && !super.moveLeft) {
                   this.setRotYaw(this.getRotYaw() + 0.6F * gmy * partialTicks * flag * sf);
                }
+
             }
          }
 
@@ -475,10 +477,23 @@ public class MCH_EntityTank extends MCH_EntityAircraft {
                this.addCurrentThrottle(-0.01D * (double)throttleUpDown);
             } else {
                this.setCurrentThrottle(0.0D);
-               if(this.getAcInfo().enableBack) {
+               if(this.getAcInfo().enableBack) {//potential source of problem
                   super.throttleBack = (float)((double)super.throttleBack + 0.0025D * (double)throttleUpDown);
                   if(super.throttleBack > 0.6F) {
                      super.throttleBack = 0.6F;
+                  }
+                  float pivotTurnThrottle1 = this.getAcInfo().pivotTurnThrottle;
+                  if (pivotTurnThrottle1 > 0) {
+                     if (super.throttleBack > 0) {
+                        //add opposite of what should be doing here
+                        if(super.moveLeft && !super.moveRight) {
+                           this.setRotYaw(this.getRotYaw() + 1.2F);
+                        }
+
+                        if(super.moveRight && !super.moveLeft) {
+                           this.setRotYaw(this.getRotYaw() - 1.2F);
+                        }
+                     }
                   }
                }
             }
